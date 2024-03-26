@@ -58,23 +58,22 @@ function Mainmenu() {
       <section className="news-section">
         <h2>Haberler</h2>
         <Slider {...settings}>
-        {newsData.map(news => (
-  <div key={news.properties.OBJECTID} className="news-card" onClick={() => handleNewsClick(news)}>
-    <h3>{news.properties.ADI}</h3>
-    <p>{news.properties.ADRES}</p>
-    {news.properties.RESIM_URL === 1 && <img src={haber1Resim} alt={news.properties.ADI} />}
-    {news.properties.RESIM_URL === 2 && <img src={haber2Resim} alt={news.properties.ADI} />}
-  </div>
-))}
+  {newsData.map(news => (
+    <div key={news.properties.OBJECTID} className="news-card" onClick={() => handleNewsClick(news)}>
+      <h3>{news.properties.ADI}</h3>
+      <p>{news.properties.ADRES}</p>
+      <img className="news-image" src={news.properties.RESIM_URL} alt={news.properties.ADI} />
+    </div>
+  ))}
+</Slider>
 
-        </Slider>
       </section>
       {selectedNews && (
         <div className="news-modal">
           <div className="news-modal-content">
             <span className="close" onClick={handleBackClick}>&times;</span>
-            <h2>{selectedNews.properties.title}</h2>
-            <p>{selectedNews.properties.content}</p>
+            <h2>{selectedNews.properties.ADI}</h2>
+            <p>{selectedNews.properties.ADRES}</p>
           </div>
         </div>
       )}
